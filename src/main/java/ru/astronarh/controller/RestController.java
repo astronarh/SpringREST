@@ -2,7 +2,6 @@ package ru.astronarh.controller;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,6 @@ public class RestController implements WebMvcConfigurer {
 
     @RequestMapping(value = "/", headers = "Accept=application/json")
     private String data(@RequestBody @Validated Data data, BindingResult bindingResult) {
-        System.out.println(bindingResult);
-        System.out.println(data);
         StringBuilder errors = new StringBuilder();
         if (bindingResult.hasErrors()) {
             for (Object object : bindingResult.getAllErrors()) {
