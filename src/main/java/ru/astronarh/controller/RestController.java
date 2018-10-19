@@ -1,8 +1,10 @@
 package ru.astronarh.controller;
 
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -21,5 +23,10 @@ public class RestController implements WebMvcConfigurer {
             return errors.toString();
         }
         return "ok";
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String handleExceptions(HttpMessageNotReadableException anExc) {
+        return anExc.toString(); // do something better than this ;)
     }
 }
