@@ -31,13 +31,13 @@ public class RestController implements WebMvcConfigurer {
                 errors.put(((FieldError) object).getField(), ((FieldError) object).getDefaultMessage());
             }
 
-            return new Answer("Here some error", errors);
+            return new Answer("Here some error!", errors);
         }
         return new Answer("Ok", null);
     }
 
     @ExceptionHandler(Exception.class)
     public Answer handleExceptions(HttpMessageNotReadableException anExc) {
-        return new Answer("Here some error", new HashMap<String, String>(){{put("Input data", "Wrong input data");}});
+        return new Answer("Here some error!", new HashMap<String, String>(){{put("Input data", "Wrong input data");}});
     }
 }
